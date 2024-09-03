@@ -82,11 +82,20 @@ header {
     "menu menu";
 }
 
+.header__search-button p {
+  display: none;
+}
+
+
 @media (min-width: 780px) {
   .grid {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "logo menu search";
   }
+  .header__search-button p {
+    display: initial;
+  }
+  
 }
 
 .header__logo {
@@ -120,10 +129,11 @@ header {
   justify-content: end;
 }
 
-.header__search button {
+.header__search-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: .5em;
   cursor: pointer;
   padding: 0;
 }
@@ -192,7 +202,14 @@ header {
   text-decoration: underline;
 }
 
+.all-pagination {
+  display: flex;
+  justify-content: space-between;
+}
 
+.all-pagination-right {
+  justify-content: end;
+}
 /* FOOTER */
 footer {
   margin-top: 2em;

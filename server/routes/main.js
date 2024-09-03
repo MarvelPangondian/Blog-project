@@ -3,22 +3,23 @@ const router = express.Router();
 const { Post } = require("../models/postModel.js");
 
 // initial
-router.route("/").get((req, res) => {
-  res.render("./index.ejs", { title: "main page" });
-});
+router.route("/").get(async (req, res) => {
+  const currentPage = parseInt(req.query.page) || 1;
+  let nextPage;
+  const eachPageCount = 6;
+  const totalPage =  await Post.countDocuments({});
+  
 
-router.route("/data").get(async (req, res) => {
-  try {
-    const currentPage = req.query.page || 1;
-    const eachPageCount = 6;
-    const howMuchPageToSkip = (currentPage - 1) * 6;
-    const data = await Post.aggregate([{ $sort: { createdAt: -1 } }])
-      .skip(howMuchPageToSkip)
-      .limit(eachPageCount);
-
-    res.json(data);
-  } catch (err) {
-    console.log(err);
+  const data = await Post.aggregate([{ $sort: { createdAt: -1 } }])
+    .skip((currentPage - 1) * 6)
+    .limit(eachPageCount);
+  
+  // determine if there is a next page
+  const pagesLeft = totalPage - (((currentPage - 1) * 6) + 6);
+  if (pagesLeft >= 1) {
+    nextPage = currentPage + 1;
   }
+  res.render("./index.ejs", { title: "main page" , data, currentPage, nextPage});
 });
+
 module.exports = router;

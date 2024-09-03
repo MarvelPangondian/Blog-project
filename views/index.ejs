@@ -8,19 +8,24 @@
 <article class="articles">
   <h2 class="articles__header">Latest Post</h2>
   <ul class="article-list">
-    <li>
-      <a href="#">
-        <p class="article-list__title">Post Title</p>
-        <p class="article-list__date">Date</p>
-      </a>
-    </li>
-        <li>
-      <a href="#">
-        <p class="article-list__title">Post Title</p>
-        <p class="article-list__date">Date</p>
-      </a>
-    </li>
+    <% data.forEach(element => { %>
+      <li>
+        <a href= <%= `/${element.id}` %>>
+          <p class="article-list__title"><%= element.title %> </p>
+          <p class="article-list__date"><%= element.createdAt.toDateString() %></p>
+        </a>
+      </li>
+    <% }) %>  
   </ul>
-
-  <a href="#" class="pagination">&lt; View older posts</a>
+  
+  <% if (!nextPage) { %>
+    <div class="all-pagination all-pagination-right">
+  <% } else { %>
+    <div class="all-pagination">
+    <a href=<%= `?page=${nextPage}`%> class="pagination pagination-older">&lt; View older posts</a>
+  <% } %>
+      <% if (currentPage !== 1) { %>
+        <a href= <%= `?page=${currentPage - 1}` %> class="pagination pagination-newer"> View newer posts &gt;</a>
+      <% } %>
+  </div>
 </article>
