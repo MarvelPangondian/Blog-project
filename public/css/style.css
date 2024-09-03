@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-  --font-size-base:1rem;
+  --font-size-base: 1rem;
   --font-size-md: 1.5rem;
   --font-size-lg: 2rem;
   --font-size-xl: 3rem;
-  --font-color-primary:#FFFFFF;
-  --dark-blue:#27374D;
-  --dark-blue-hover:#1a2433;
-  --background-color-primary : #526D82;
-  --border-radius:10px;
-  --font-family-primary:"Poppins",sans-serif;
+  --font-color-primary: #ffffff;
+  --dark-blue: #27374d;
+  --dark-blue-hover: #1a2433;
+  --background-color-primary: #526d82;
+  --border-radius: 10px;
+  --font-family-primary: "Poppins", sans-serif;
 }
 
 * {
@@ -48,7 +48,7 @@ a {
 .btn {
   font-size: var(--font-size-md);
   font-family: var(--font-family-primary);
-  color:var(--font-color-primary);
+  color: var(--font-color-primary);
   background: none;
   border: none;
 }
@@ -60,33 +60,29 @@ a {
   margin: 0 auto;
 }
 
-
 /* HEADER */
 header {
   background-color: var(--dark-blue);
   font-size: var(--font-size-md);
   padding: 2.5em;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, .25);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
   margin-bottom: 2.8em;
 }
 .grid {
   display: grid;
   align-items: center;
-  grid-template-columns:1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   row-gap: 1em;
-  grid-template-areas: 
-  "logo search"
-  "menu menu"
-  ;
+  grid-template-areas:
+    "logo search"
+    "menu menu";
 }
 
-@media (min-width:780px){
+@media (min-width: 780px) {
   .grid {
-    grid-template-columns:1fr 1fr 1fr ;
-    grid-template-areas: 
-    "logo menu search"
-    ;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "logo menu search";
   }
 }
 
@@ -108,7 +104,7 @@ header {
 
 .header__nav-item {
   list-style: none;
-  margin: 0 .5em;
+  margin: 0 0.5em;
 }
 
 .header a {
@@ -131,19 +127,18 @@ header {
 
 /* MAIN */
 
-
 .author {
   text-align: center;
   margin-bottom: 4em;
-  text-shadow: 10px 10px 4px rgba(0, 0, 0, .25);
+  text-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
 }
 
 .hero-img {
   border-radius: var(--border-radius);
   max-height: 500px;
-  width: 100%; 
+  width: 100%;
   object-fit: cover;
-  box-shadow: 10px 10px 4px rgba(0, 0, 0, .25); 
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   margin-bottom: 4.5em;
 }
 
@@ -151,4 +146,3 @@ header {
   font-weight: 800;
   margin-bottom: 1.2em;
 }
-

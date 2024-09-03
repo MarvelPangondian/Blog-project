@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const connectToDatabase = async () => {
-  try { 
+  try {
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('successfully connected !');
-  } catch(err){
+    console.log("successfully connected !");
+  } catch (err) {
     console.log(err);
   }
-}
+};
 
 process.on("SIGINT", () => {
   mongoose.connection.close();

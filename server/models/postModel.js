@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 class PostTemplate {
   title;
@@ -7,26 +7,26 @@ class PostTemplate {
   updatedAt;
 }
 const PostScheme = new mongoose.Schema({
-  title:{
-    type:String,
-    required: [true,'title is required !']
+  title: {
+    type: String,
+    required: [true, "title is required !"],
   },
-  body :{
-    type:String,
-    required: [true, 'body is required !']
+  body: {
+    type: String,
+    required: [true, "body is required !"],
   },
   createdAt: {
     type: Date,
-    required: [true, 'createdAt is required!']
+    required: [true, "createdAt is required!"],
   },
   updatedAt: {
-    type:Date,
-    required:[true, 'Updated at is required! ']
-  }
+    type: Date,
+    required: [true, "Updated at is required! "],
+  },
 });
 
-const Post = mongoose.model('Posts',PostScheme);
+const Post = mongoose.model("Posts", PostScheme);
 
 module.exports = {
-  Post
-}
+  Post,
+};
