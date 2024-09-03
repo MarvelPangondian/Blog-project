@@ -13,10 +13,12 @@
   --font-family-primary: "Poppins", sans-serif;
 }
 
+
 * {
   box-sizing: border-box;
   margin: 0;
 }
+
 body {
   margin: 0;
   background-color: var(--background-color-primary);
@@ -68,6 +70,7 @@ header {
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
   margin-bottom: 2.8em;
 }
+
 .grid {
   display: grid;
   align-items: center;
@@ -127,6 +130,7 @@ header {
 
 /* MAIN */
 
+
 .author {
   text-align: center;
   margin-bottom: 4em;
@@ -142,7 +146,56 @@ header {
   margin-bottom: 4.5em;
 }
 
+@media only screen and (min-width: 780px){
+  .article-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 .articles h2 {
   font-weight: 800;
   margin-bottom: 1.2em;
+}
+
+.article-list {
+  padding: 0;
+} 
+
+.article-list li {
+  list-style: none;
+  font-size: var(--font-size-md);
+  padding: 1em 0;
+}
+
+.article-list li:not(:last-child){
+  border-bottom: 1px solid var(--font-color-primary);
+}
+
+.article-list li:last-child {
+  margin-bottom: 2.5em;
+}
+.article-list a {
+  color: var(--font-color-primary);
+}
+
+.article-list__date {
+  font-size: var(--font-size-base);
+  opacity: 0.6;
+}
+
+.pagination {
+  color: var(--font-color-primary);
+}
+.pagination:hover {
+  text-decoration: underline;
+}
+
+
+/* FOOTER */
+footer {
+  margin-top: 2em;
+  text-align: center;
+  margin-top: 5em;
 }
