@@ -1,18 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css ">
-  <title><%= title %></title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css " />
+    <title><%= title %></title>
+    <% if (title === 'login') { %>
+    <style>
+      .header__login {
+        display: none;
+      }
+
+      .header__nav {
+        grid-area: search;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+          "logo"
+          "search";
+      }
+
+      .header__logo {
+        text-align: center;
+      }
+
+      @media only screen and (min-width: 780px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-areas: "logo search";
+        }
+
+        .header__logo {
+          text-align: left;
+        }
+
+        .header__nav {
+          display: flex;
+          justify-content: end;
+        }
+      }
+    </style>
+    <% } %>
+  </head>
+  <body>
     <%- include('../partials/header.ejs') %>
-  <div class="container">
-    <main class="main">
-      <%- body %>
-      <%- include('../partials/footer.ejs') %>
-    </main>
-  </div>
-</body>
+    <div class="container">
+      <main class="main">
+        <%- body %> <%- include('../partials/footer.ejs') %>
+      </main>
+    </div>
+  </body>
 </html>
