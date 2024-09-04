@@ -10,7 +10,6 @@ router.route('/:id')
       res.redirect('/404');
       return;
     }
-    console.log(data);
     res.status(200).render('./post.ejs', {title:data.title, post:data});
   })
 

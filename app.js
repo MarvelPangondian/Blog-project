@@ -14,9 +14,11 @@ app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.set("layout", "./layouts/main-layout");
 
+
 // routes
 app.use("/", require("./server/routes/main"));
 app.use("/post", require('./server/routes/post'));
+app.use('/search',require('./server/routes/search.js'));
 app.use('/', (req,res) => {
   res.status(404).render('./404.ejs', {title:'304 Not Found'});
 })

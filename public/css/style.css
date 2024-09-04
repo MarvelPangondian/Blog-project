@@ -2,12 +2,14 @@
 
 :root {
   --font-size-base: 1rem;
+  --font-size-text: 1.25rem;
   --font-size-md: 1.5rem;
   --font-size-lg: 2rem;
   --font-size-xl: 3rem;
   --font-color-primary: #ffffff;
   --dark-blue: #27374d;
   --dark-blue-hover: #1a2433;
+  --danger-color:#EF5A6F;
   --background-color-primary: #526d82;
   --border-radius: 10px;
   --font-family-primary: "Poppins", sans-serif;
@@ -44,6 +46,10 @@ img {
 
 a {
   text-decoration: none;
+}
+
+p {
+  font-size: var(--font-size-text);
 }
 
 .btn {
@@ -113,11 +119,11 @@ header {
   padding: 0;
   display: flex;
   justify-content: center;
+  gap: 1em;
 }
 
 .header__nav-item {
   list-style: none;
-  margin: 0 0.5em;
 }
 
 .header a {
@@ -248,10 +254,6 @@ footer {
   transform: translateY(-100%);
 }
 
-/* .open {
-  transform: translateY(100%);
-} */
-
 .searchCloseContainer {
   display: flex;
   justify-content: end;
@@ -264,16 +266,37 @@ footer {
   font-family: var(--font-family-primary);
   padding: 0.5em 0.8em;
   margin-bottom: 0.5em;
+  outline-color: var(--background-color-primary);
+  border: none;
 }
+
+.searchInput:focus {
+  outline: 0;
+}
+
 .searchInput::placeholder {
   font-size: var(--font-size-base);
   font-family: var(--font-family-primary);
 }
-
 .searchClose {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-base);
   color: var(--font-color-primary);
   background: none;
   border: none;
+}
+
+/* MISC COMPONENTS  */
+.danger {
+  background: rgba(239, 90, 111, 0.50);
+
+  text-align: center;
+  border-radius: var(--border-radius);
+  color: var(--font-color-primary);
+  font-weight: 800;
+  padding: 30px 0;
+}
+
+.danger h2 {
+  margin: 0;
 }

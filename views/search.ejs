@@ -1,0 +1,27 @@
+<article class="articles">
+  <h2 class="articles__header">Search Results: <%= searchTerm %></h2>
+  <ul class="article-list">
+    <% if (data.length === 0) { %>
+      <%- include('./partials/danger.ejs') %>
+    <% } %>
+    <% data.forEach(element => {  %>
+      <li>
+        <a href= <%= `post/${element._id}` %>>
+          <p class="article-list__title"><%= element.title %> </p>
+          <p class="article-list__date"><%= element.createdAt.toDateString() %></p>
+        </a>
+      </li>
+    <% }) %>  
+  </ul>
+  
+  <% if (!nextPage) { %>
+    <div class="all-pagination all-pagination-right">
+  <% } else { %>
+    <div class="all-pagination">
+    <a href=<%= `/search?searchTerm=${searchTerm}&page=${nextPage}`%> class="pagination pagination-older">&lt; View older posts</a>
+  <% } %>
+      <% if (currentPage !== 1) { %>
+        <a href= <%= `/search?searchTerm=${searchTerm}&page=${currentPage - 1}` %> class="pagination pagination-newer"> View newer posts &gt;</a>
+      <% } %>
+  </div>
+</article>
