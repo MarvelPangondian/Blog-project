@@ -7,10 +7,11 @@
     <title><%= title %></title>
   </head>
   <body>
-    <%- include('./partials/header') %>
+    <%- include('../partials/searchBar') %> <%- include('../partials/header') %>
     <div class="container">
       <main class="main"><%- body %></main>
-      <%- include('./partials/footer') %>
+      <%- include('../partials/footer') %>
     </div>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
