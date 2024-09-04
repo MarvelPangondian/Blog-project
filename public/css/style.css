@@ -9,7 +9,7 @@
   --font-color-primary: #ffffff;
   --dark-blue: #27374d;
   --dark-blue-hover: #1a2433;
-  --danger-color:#EF5A6F;
+  --danger-color: #ef5a6f;
   --background-color-primary: #526d82;
   --border-radius: 10px;
   --font-family-primary: "Poppins", sans-serif;
@@ -134,17 +134,19 @@ header {
   color: var(--font-color-primary);
 }
 
-.header__search, .header__login {
+.header__search,
+.header__login {
   grid-area: search;
   display: flex;
   justify-content: end;
 }
 
-.header__login a{
+.header__login a {
   font-size: var(--font-size-md);
 }
 
-.header__search-button, .header__login-button {
+.header__search-button,
+.header__login-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -159,6 +161,12 @@ header {
   text-align: center;
   margin-bottom: 4em;
   text-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.author-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-img {
@@ -267,25 +275,32 @@ footer {
   justify-content: end;
 }
 
-.searchInput {
-  width: 100%;
+input {
   border-radius: var(--border-radius);
-  font-size: var(--font-size-base);
   font-family: var(--font-family-primary);
   padding: 0.5em 0.8em;
-  margin-bottom: 0.5em;
   outline-color: var(--background-color-primary);
   border: none;
 }
 
-.searchInput:focus {
+input::placeholder {
+  font-family: var(--font-family-primary);
+}
+
+input:focus {
   outline: 0;
+}
+
+.searchInput {
+  width: 100%;
+  font-size: var(--font-size-base);
+  margin-bottom: 0.5em;
 }
 
 .searchInput::placeholder {
   font-size: var(--font-size-base);
-  font-family: var(--font-family-primary);
 }
+
 .searchClose {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-base);
@@ -296,7 +311,7 @@ footer {
 
 /* MISC COMPONENTS  */
 .danger {
-  background: rgba(239, 90, 111, 0.50);
+  background: rgba(239, 90, 111, 0.5);
 
   text-align: center;
   border-radius: var(--border-radius);
@@ -307,4 +322,37 @@ footer {
 
 .danger h2 {
   margin: 0;
+}
+
+/* LOGIN */
+
+.login-title {
+  margin-bottom: 1.75em;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-md);
+}
+
+.login-form input {
+  margin-bottom: 2em;
+  margin-top: 2em;
+  font-size: var(--font-size-md);
+}
+
+.submit-container {
+  display: flex;
+  justify-content: end;
+}
+
+.btn-secondary {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 1em;
+  background-color: var(--dark-blue);
+  color: var(--font-color-primary);
 }
