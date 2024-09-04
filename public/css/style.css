@@ -48,6 +48,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 p {
   font-size: var(--font-size-text);
 }
@@ -130,13 +134,17 @@ header {
   color: var(--font-color-primary);
 }
 
-.header__search {
+.header__search, .header__login {
   grid-area: search;
   display: flex;
   justify-content: end;
 }
 
-.header__search-button {
+.header__login a{
+  font-size: var(--font-size-md);
+}
+
+.header__search-button, .header__login-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
