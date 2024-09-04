@@ -3,14 +3,14 @@
   <h3 class="author__body">Student from the Bandung Institute of Technology</h2>
 </div>
 
-<img src="./img/programming.webp" alt="programming image" class="hero-img">
+<img src="/img/programming.webp" alt="programming image" class="hero-img">
 
 <article class="articles">
   <h2 class="articles__header">Latest Post</h2>
   <ul class="article-list">
-    <% data.forEach(element => { %>
+    <% data.forEach(element => {  %>
       <li>
-        <a href= <%= `/${element.id}` %>>
+        <a href= <%= `post/${element._id}` %>>
           <p class="article-list__title"><%= element.title %> </p>
           <p class="article-list__date"><%= element.createdAt.toDateString() %></p>
         </a>
