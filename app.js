@@ -3,11 +3,28 @@ const express = require("express");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
 require("./server/config/db.js"); // connect to database
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require("connect-flash");
 
 const PORT = process.env.PORT || 5000;
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(cookieParser("secret"));
+
+app.use(
+  session({
+    secret: "session-secret",       // Use a separate secret for session management
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 6000 },       // 6 seconds for session cookie (flash message)
+  })
+);
+
+app.use(flash());
 
 // Template engine
 app.use(expressLayouts);

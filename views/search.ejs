@@ -2,7 +2,7 @@
   <h2 class="articles__header">Search Results: <%= searchTerm %></h2>
   <ul class="article-list">
     <% if (data.length === 0) { %>
-      <%- include('./partials/danger.ejs') %>
+      <%- include('./partials/danger.ejs', {message:"No results!"}) %>
     <% } %>
     <% data.forEach(element => {  %>
       <li>
