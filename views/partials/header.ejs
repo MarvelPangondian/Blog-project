@@ -1,6 +1,8 @@
 <header class="header">
   <div class="grid container container-flex">
-    <a href="/" class="header__logo header__nav-link">NodeJS</a>
+    <div class="header__logo">
+      <a href="/" class="header__nav-link">NodeJS</a>
+    </div>
 
     <nav class="header__nav">
       <ul class="header__nav-list">
@@ -17,9 +19,13 @@
     </nav>
 
     <div class="header__search">
-      <button class="header__search-button btn" aria-expanded="false">
+      <button class="header__search-button btn">
         <p>Search</p>
-        <img src="/img/search.svg" alt="search image" />
+        <img
+          src="/img/search.svg"
+          alt="search image"
+          style="max-height: 35px"
+        />
       </button>
     </div>
   </div>

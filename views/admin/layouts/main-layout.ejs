@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style.css " />
     <title><%= title %></title>
-    <% if (title === 'login') { %>
+    <% if (title === 'login' ) { %>
     <style>
       .header__login {
         display: none;
@@ -46,7 +46,8 @@
     <% } %>
   </head>
   <body>
-    <%- include('../partials/header.ejs') %>
+    <% let state = 'Login'; if (title === 'dashboard') { state = 'Logout'; }%>
+    <%- include('../partials/header.ejs', {state}) %>
     <div class="container">
       <main class="main">
         <%- body %> <%- include('../partials/footer.ejs') %>

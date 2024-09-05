@@ -1,0 +1,27 @@
+
+<article class="articles">
+  <h2 class="articles__header">Posts</h2>
+  <ul class="article-list">
+    <% data.forEach(element => {  %>
+      <li>
+        <a href= <%= `post/${element._id}` %>>
+          <p class="article-list__title"><%= element.title %> </p>
+          <div class="article-list__buttons">
+            Hello
+          </div>
+        </a>
+      </li>
+    <% }) %>  
+  </ul>
+  
+  <% if (!nextPage) { %>
+    <div class="all-pagination all-pagination-right">
+  <% } else { %>
+    <div class="all-pagination">
+    <a href=<%= `admin/dashboard?page=${nextPage}`%> class="pagination pagination-older">&lt; View older posts</a>
+  <% } %>
+      <% if (currentPage !== 1) { %>
+        <a href= <%= `admin/dashboard?page=${currentPage - 1}` %> class="pagination pagination-newer"> View newer posts &gt;</a>
+      <% } %>
+  </div>
+</article>

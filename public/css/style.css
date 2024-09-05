@@ -96,7 +96,7 @@ header {
 }
 
 .header__search-button p {
-  display: none;
+  font-size: var(--font-size-md);
 }
 
 @media (min-width: 780px) {
