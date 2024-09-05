@@ -8,6 +8,17 @@ const jwt = require("jsonwebtoken");
 // Router initialization
 const router = express.Router();
 
+// tools
+const setSuccess = (req, message) => {
+  req.flash("msg", message);
+  req.flash("msgStatus", "Ok");
+};
+
+const setFail = (req, message) => {
+  req.flash("msg", message);
+  req.flash("msgStatus", "No");
+};
+
 // Middleware
 const authenticateWebTokenMiddleware = async (req, res, next) => {
   try {
@@ -99,12 +110,11 @@ router
       }
 
       // flash invalid credentials
-      req.flash("msg", "Invalid Credentials");
+      setFail(req, "Invalid Credentials");
       res.redirect("/admin/login");
     } catch (err) {
       console.log(err);
-
-      req.flash("msg", "Invalid Credentials");
+      setFail(req, "Invalid Credentials");
       res.redirect("/admin/login");
     }
   });
@@ -119,6 +129,9 @@ router.route("/logout").get((req, res) => {
 router
   .route("/dashboard")
   .get(authenticateWebTokenMiddleware, async (req, res) => {
+    const message = req.flash("msg");
+    const messageStatus = req.flash("msgStatus");
+    
     // Paging process
     const currentPage = parseInt(req.query.page) || 1;
     let nextPage;
@@ -139,12 +152,21 @@ router
       data,
       currentPage,
       nextPage,
+      message,
+      messageStatus
     });
   })
 
   .delete(authenticateWebTokenMiddleware, async (req, res) => {
-    await Post.deleteOne({ _id: req.body.postId });
-    res.redirect("/admin/dashboard");
+    try {
+      await Post.deleteOne({ _id: req.body.postId });
+      setSuccess(req, "Delete successful!");
+      res.redirect("/admin/dashboard");
+      return;
+    } catch (err) {
+      setFail(req, "Delete unsuccessful!");
+      res.redirect("/admin/dashboard");
+    }
   });
 
 // Add route
@@ -161,15 +183,23 @@ router
   })
   .post(authenticateWebTokenMiddleware, async (req, res) => {
     const today = new Date();
-    await Post.insertMany([
-      {
-        title: req.body.title,
-        body: req.body.body,
-        createdAt: today,
-        updatedAt: today,
-      },
-    ]);
-    res.redirect("/admin/dashboard");
+    try {
+      await Post.insertMany([
+        {
+          title: req.body.title,
+          body: req.body.body,
+          createdAt: today,
+          updatedAt: today,
+        },
+      ]);
+      setSuccess(req,"Added post!");
+      res.redirect("/admin/dashboard");
+      return;
+    } catch (err) {
+
+      setFail(req, "Failed to add post..");
+      res.redirect("/admin/dashboard");
+    }
   });
 
 // Edit route
@@ -190,11 +220,12 @@ router
       const { title, body } = req.body;
       await Post.findOneAndUpdate(
         { _id: req.params.id },
-        { title, body, updatedAt: new Date() }
+        { title, body, updatedAt: new Date(), hasBeenUpdated: true }
       );
+      setSuccess(req, "Edit successful");
       res.redirect("/admin/dashboard");
     } catch (err) {
-      console.log(err);
+      setFail(req, "Edit unsuccessful!");
       res.redirect("/admin/dashboard");
     }
   });

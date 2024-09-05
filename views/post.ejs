@@ -4,9 +4,11 @@
     <p class="article-list__date" style="padding-bottom: 0.5em">
       <%= post.createdAt.toDateString() %>
     </p>
+    <% if (post.hasBeenUpdated) { %>
     <p class="article-list__date">
       Updated at: <%= post.updatedAt.toDateString() %>
     </p>
+    <% } %>
   </div>
   <p><%= post.body %></p>
 </div>

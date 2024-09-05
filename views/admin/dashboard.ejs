@@ -1,9 +1,19 @@
 
 <article class="articles">
-<!--   
-  <div class="flash">
-    Done !
-  </div> -->  <div class="articles__header">
+  <% if (message.length !== 0) { %>
+  
+    <% if (messageStatus[0] === 'No') { %>
+      <div class="danger flash">
+        <h2><%= message[0] %></h2>
+      </div>
+    <% } else { %>
+      <div class="info flash">
+        <h2><%= message[0] %></h2>
+      </div>
+    <%  }%>
+  <% } %>
+
+  <div class="articles__header">
     <h2>Posts</h2>
     <a href="/admin/add">+Add new post</a>
   </div> 

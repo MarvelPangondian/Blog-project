@@ -23,6 +23,10 @@ const PostScheme = new mongoose.Schema({
     type: Date,
     required: [true, "Updated at is required! "],
   },
+  hasBeenUpdated: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 const Post = mongoose.model("Posts", PostScheme);

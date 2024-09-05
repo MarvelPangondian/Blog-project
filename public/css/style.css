@@ -381,7 +381,14 @@ textarea:focus {
   background: rgba(239, 90, 111, 0.5);
 }
 
-.danger h2 {
+.info {
+  background: rgba(23, 103, 214, .5);
+}
+
+.danger, .info {
+  margin-bottom: 3em;
+}
+.danger h2, .info h2 {
   margin: 0;
 }
 
