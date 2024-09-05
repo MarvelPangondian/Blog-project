@@ -143,12 +143,6 @@ router
   .delete(authenticateWebTokenMiddleware, async (req, res) => {
     await Post.deleteOne({_id : req.body.postId});
     res.redirect('/admin/dashboard');
-  })
-
-  .put(authenticateWebTokenMiddleware, (req, res) => {
-    res.json({
-      postId: req.body.postId,
-    });
   });
 
 // Add route
@@ -171,5 +165,41 @@ router.route('/add')
     }]);
     res.redirect('/admin/dashboard');
   })
+
+
+// Edit route
+router.route('/edit/:id')
+  .get(authenticateWebTokenMiddleware, async (req,res) => {
+    const data = await Post.findOne({_id:req.params.id});
+
+    res.render('./admin/editPage.ejs', { 
+      title: "edit",
+      layout: "./admin/layouts/main-layout.ejs",
+      postId: req.params.id,
+      data
+    });
+  })
+  .put(authenticateWebTokenMiddleware, async (req,res) => {
+    try{ 
+      const {title, body} = req.body;
+      await Post.findOneAndUpdate({_id:req.params.id}, {title, body, updatedAt:new Date()});
+      res.redirect('/admin/dashboard');
+    } catch(err) {
+      console.log(err);
+      res.redirect('/admin/dashboard');
+    }
+  })
+
+
+// view post
+router.route("/post/:id").get(authenticateWebTokenMiddleware ,async (req, res) => {
+  const id = req.params.id;
+  const data = await Post.findOne({ _id: id });
+  if (!data) {
+    res.redirect("/404");
+    return;
+  }
+  res.status(200).render("./post.ejs", { title: data.title, post: data, layout:"./admin/layouts/main-layout.ejs" });
+});
 
 module.exports = router;

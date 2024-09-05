@@ -11,13 +11,12 @@
     <% data.forEach(element => {  %>
       <li class="article-list__admin">
 
-        <a href= <%= `/post/${element._id}` %>>
+        <a href= <%= `/admin/post/${element._id}` %>>
           <p class="article-list__title"><%= element.title %> </p>
         </a>
 
         <div class="article-list__buttons">
-          <form method="POST" action="/admin/dashboard?_method=PUT">
-            <input type="hidden" value="<%= element._id%>" name="postId" />
+          <form method="GET" action="/admin/edit/<%= element._id%>">
             <button type="submit" class="btn-secondary edit-button">Edit</button>
           </form>
           <form method="POST" action="/admin/dashboard?_method=DELETE">
