@@ -23,6 +23,7 @@ router.route("/").get(async (req, res) => {
     data,
     currentPage,
     nextPage,
+    currentRoute:'home',
   });
 });
 

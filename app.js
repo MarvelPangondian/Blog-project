@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
+const isCurrentRoute = require('./public/scripts/util')
 
 // App initialization
 const app = express();
@@ -22,6 +23,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.locals.isCurrentRoute = isCurrentRoute;
 
 // View engine setup
 app.use(expressLayouts);
@@ -53,7 +55,7 @@ app.use("/admin", require("./server/routes/admin"));
 
 // 404 error handling
 app.use((req, res) => {
-  res.status(400).render("./404.ejs", { title: "404 Not Found" });
+  res.status(400).render("./404.ejs", { title: "404 Not Found",currentRoute:'' });
 });
 
 // Start server

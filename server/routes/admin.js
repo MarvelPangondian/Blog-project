@@ -42,6 +42,7 @@ router.route("/").get((req, res) => {
   res.render("./admin/index.ejs", {
     title: "Admin page",
     layout: "./admin/layouts/main-layout.ejs",
+    currentRoute:''
   });
 });
 
@@ -72,6 +73,7 @@ router
         title: "login",
         layout: "./admin/layouts/main-layout.ejs",
         message,
+        currentRoute:'',
       });
       return;
     }
@@ -153,7 +155,8 @@ router
       currentPage,
       nextPage,
       message,
-      messageStatus
+      messageStatus,
+      currentRoute:''
     });
   })
 
@@ -179,6 +182,7 @@ router
       title: "add",
       layout: "./admin/layouts/main-layout.ejs",
       message,
+      currentRoute:''
     });
   })
   .post(authenticateWebTokenMiddleware, async (req, res) => {
@@ -213,6 +217,7 @@ router
       layout: "./admin/layouts/main-layout.ejs",
       postId: req.params.id,
       data,
+      currentRoute:''
     });
   })
   .put(authenticateWebTokenMiddleware, async (req, res) => {
@@ -244,7 +249,29 @@ router
       title: data.title,
       post: data,
       layout: "./admin/layouts/main-layout.ejs",
+      currentRoute:''
     });
   });
+
+router
+  .route("/about")
+  .get(authenticateWebTokenMiddleware, async (req, res) => {
+    res.status(200).render("./about.ejs", {
+      title: 'about',
+      layout: "./admin/layouts/main-layout.ejs",
+      currentRoute:'about'
+    });
+  });
+
+router
+  .route("/contact")
+  .get(authenticateWebTokenMiddleware, async (req, res) => {
+    res.status(200).render("./contact.ejs", {
+      title: 'contact',
+      layout: "./admin/layouts/main-layout.ejs",
+      currentRoute:'contact'
+    });
+  });
+
 
 module.exports = router;

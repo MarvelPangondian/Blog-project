@@ -1,3 +1,5 @@
+
+
 <header class="header">
   <div class="grid container container-flex">
     <div class="header__logo">
@@ -7,13 +9,13 @@
     <nav class="header__nav">
       <ul class="header__nav-list">
         <li class="header__nav-item">
-          <a href="/" class="header__nav-link">Home</a>
+          <a href="/" class="header__nav-link <%= isCurrentRoute('home',currentRoute) %>">Home</a>
         </li>
         <li class="header__nav-item">
-          <a href="/about" class="header__nav-link">About</a>
+          <a href="/about" class="header__nav-link <%= isCurrentRoute('about',currentRoute) %>">About</a>
         </li>
         <li class="header__nav-item">
-          <a href="/contact" class="header__nav-link">Contact</a>
+          <a href="/contact" class="header__nav-link <%= isCurrentRoute('contact',currentRoute) %>">Contact</a>
         </li>
       </ul>
     </nav>

@@ -34,6 +34,7 @@ router.route("/").get(async (req, res) => {
       data,
       currentPage,
       nextPage,
+      currentRoute:''
     });
   } catch (err) {
     console.log(err);

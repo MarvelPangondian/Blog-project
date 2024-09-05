@@ -9,7 +9,7 @@ router.route("/:id").get(async (req, res) => {
     res.redirect("/404");
     return;
   }
-  res.status(200).render("./post.ejs", { title: data.title, post: data });
+  res.status(200).render("./post.ejs", { title: data.title, post: data, currentRoute:''});
 });
 
 module.exports = router;
