@@ -22,7 +22,9 @@
       <a
         class="header__login-button btn"
         aria-expanded="true"
-        href="/admin/<%= state.toLowerCase() %>"
+        href="/admin/<%= state.toLowerCase()%>" <% if (state === 'Logout') { %>
+        onclick="return confirm('Are you sure ?')"
+        <% } %>
       >
         <%= state %>
       </a>

@@ -102,7 +102,7 @@ header {
 
 @media (min-width: 780px) {
   .grid {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto 1fr auto;
     grid-template-areas: "logo menu search";
   }
   .header__search-button p {
@@ -331,19 +331,18 @@ footer {
   justify-content: end;
 }
 
-input {
+input, textarea {
   border-radius: var(--border-radius);
   font-family: var(--font-family-primary);
   padding: 0.5em 0.8em;
-  outline-color: var(--background-color-primary);
   border: none;
 }
 
-input::placeholder {
+input::placeholder, textarea::placeholder {
   font-family: var(--font-family-primary);
 }
 
-input:focus {
+input:focus, textarea:focus {
   outline: 0;
 }
 
@@ -366,14 +365,16 @@ input:focus {
 }
 
 /* MISC COMPONENTS  */
-.danger {
-  background: rgba(239, 90, 111, 0.5);
-
+.flash {
   text-align: center;
   border-radius: var(--border-radius);
   color: var(--font-color-primary);
   font-weight: 800;
   padding: 30px 0;
+}
+
+.danger {
+  background: rgba(239, 90, 111, 0.5);
 }
 
 .danger h2 {
@@ -392,7 +393,7 @@ input:focus {
   font-size: var(--font-size-md);
 }
 
-.login-form input {
+.login-form input, .login-form textarea {
   margin-bottom: 2em;
   margin-top: 2em;
   font-size: var(--font-size-md);

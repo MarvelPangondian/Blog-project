@@ -84,11 +84,11 @@ router
         const token = jwt.sign(
           { usernameId: username._id },
           process.env.SECRET_KEY,
-          { expiresIn: 60 * 5 } // 5 minutes
+          { expiresIn: 60 * 60 } // 1 hour
         );
 
         // store token in cookies
-        res.cookie("jyuKairosGrace", token, { httpOnly: true });
+        res.cookie("jyuKairosGrace", token, { httpOnly: true, maxAge: 1000 * 60 * 60  });
 
         // redirect to dashboard
         res.redirect("/admin/dashboard");
@@ -105,6 +105,13 @@ router
       res.redirect("/admin/login");
     }
   });
+
+// Logout
+router.route('/logout')
+  .get((req,res) => {
+    res.clearCookie('jyuKairosGrace');
+    res.redirect('/');
+  })
 
 // Dashboard
 router
@@ -133,10 +140,9 @@ router
     });
   })
 
-  .delete(authenticateWebTokenMiddleware, (req, res) => {
-    res.json({
-      postId: req.body.postId,
-    });
+  .delete(authenticateWebTokenMiddleware, async (req, res) => {
+    await Post.deleteOne({_id : req.body.postId});
+    res.redirect('/admin/dashboard');
   })
 
   .put(authenticateWebTokenMiddleware, (req, res) => {
@@ -144,5 +150,26 @@ router
       postId: req.body.postId,
     });
   });
+
+// Add route
+router.route('/add')
+  .get(authenticateWebTokenMiddleware, (req,res) => {
+    // res.send('inside');
+    let message = [];
+    res.render('./admin/addPage.ejs', {        
+      title: "add",
+      layout: "./admin/layouts/main-layout.ejs",
+      message});
+  })
+  .post(authenticateWebTokenMiddleware, async (req,res) => {
+    const today = new Date();
+    await Post.insertMany([{
+      title:req.body.title,
+      body:req.body.body,
+      createdAt: today,
+      updatedAt: today
+    }]);
+    res.redirect('/admin/dashboard');
+  })
 
 module.exports = router;
