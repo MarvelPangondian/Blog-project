@@ -7,7 +7,7 @@ const expressLayouts = require("express-ejs-layouts");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
-const methodOverride = require('method-override')
+const methodOverride = require("method-override");
 
 // App initialization
 const app = express();
@@ -41,7 +41,7 @@ app.use(
 
 // Middleware
 app.use(flash());
-app.use(methodOverride('_method'))
+app.use(methodOverride("_method"));
 
 // Routes
 app.use("/", require("./server/routes/main"));

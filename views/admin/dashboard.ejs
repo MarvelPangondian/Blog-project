@@ -1,6 +1,9 @@
 
 <article class="articles">
-  <h2 class="articles__header">Posts</h2>
+  <div class="articles__header">
+    <h2>Posts</h2>
+    <a href="/admin/add">+Add new post</a>
+  </div> 
   <ul class="article-list">
     <% data.forEach(element => {  %>
       <li class="article-list__admin">
@@ -16,7 +19,7 @@
           </form>
           <form method="POST" action="/admin/dashboard?_method=DELETE">
             <input type="hidden" value="<%= element._id%>" name="postId" />
-            <button type="submit" class="btn-secondary delete-button">Delete</button>
+            <button type="submit" class="btn-secondary delete-button" onclick="return confirm('Are you sure ?')" >Delete</button>
           </form>
         </div>
       </li>
@@ -34,3 +37,4 @@
       <% } %>
   </div>
 </article>
+
