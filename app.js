@@ -45,6 +45,8 @@ app.use(methodOverride("_method"));
 
 // Routes
 app.use("/", require("./server/routes/main"));
+app.use("/contact", require("./server/routes/contact"));
+app.use("/about", require("./server/routes/about"));
 app.use("/post", require("./server/routes/post"));
 app.use("/search", require("./server/routes/search"));
 app.use("/admin", require("./server/routes/admin"));

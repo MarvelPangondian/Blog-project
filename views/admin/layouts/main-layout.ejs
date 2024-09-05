@@ -46,8 +46,8 @@
     <% } %>
   </head>
   <body>
-    <% let state = 'Login'; if (title !== 'login' && title !== 'Admin page' ) { state = 'Logout'; }%>
-    <%- include('../partials/header.ejs', {state}) %>
+    <% let state = 'Login'; if (title !== 'login' && title !== 'Admin page' ) {
+    state = 'Logout'; }%> <%- include('../partials/header.ejs', {state}) %>
     <div class="container">
       <main class="main">
         <%- body %> <%- include('../partials/footer.ejs') %>

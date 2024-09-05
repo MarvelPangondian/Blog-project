@@ -1,9 +1,12 @@
-
 <div class="container post">
   <div class="post__header" style="padding-bottom: 2em">
     <h1 class="post__title"><%= post.title %></h1>
-    <p class="article-list__date" style="padding-bottom: .5em;"><%= post.createdAt.toDateString() %></p>
-    <p class="article-list__date">Updated at: <%= post.updatedAt.toDateString() %></p>
+    <p class="article-list__date" style="padding-bottom: 0.5em">
+      <%= post.createdAt.toDateString() %>
+    </p>
+    <p class="article-list__date">
+      Updated at: <%= post.updatedAt.toDateString() %>
+    </p>
   </div>
   <p><%= post.body %></p>
 </div>

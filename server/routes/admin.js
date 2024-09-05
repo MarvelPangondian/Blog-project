@@ -88,7 +88,10 @@ router
         );
 
         // store token in cookies
-        res.cookie("jyuKairosGrace", token, { httpOnly: true, maxAge: 1000 * 60 * 60  });
+        res.cookie("jyuKairosGrace", token, {
+          httpOnly: true,
+          maxAge: 1000 * 60 * 60,
+        });
 
         // redirect to dashboard
         res.redirect("/admin/dashboard");
@@ -107,11 +110,10 @@ router
   });
 
 // Logout
-router.route('/logout')
-  .get((req,res) => {
-    res.clearCookie('jyuKairosGrace');
-    res.redirect('/');
-  })
+router.route("/logout").get((req, res) => {
+  res.clearCookie("jyuKairosGrace");
+  res.redirect("/");
+});
 
 // Dashboard
 router
@@ -141,65 +143,77 @@ router
   })
 
   .delete(authenticateWebTokenMiddleware, async (req, res) => {
-    await Post.deleteOne({_id : req.body.postId});
-    res.redirect('/admin/dashboard');
+    await Post.deleteOne({ _id: req.body.postId });
+    res.redirect("/admin/dashboard");
   });
 
 // Add route
-router.route('/add')
-  .get(authenticateWebTokenMiddleware, (req,res) => {
+router
+  .route("/add")
+  .get(authenticateWebTokenMiddleware, (req, res) => {
     // res.send('inside');
     let message = [];
-    res.render('./admin/addPage.ejs', {        
+    res.render("./admin/addPage.ejs", {
       title: "add",
       layout: "./admin/layouts/main-layout.ejs",
-      message});
+      message,
+    });
   })
-  .post(authenticateWebTokenMiddleware, async (req,res) => {
+  .post(authenticateWebTokenMiddleware, async (req, res) => {
     const today = new Date();
-    await Post.insertMany([{
-      title:req.body.title,
-      body:req.body.body,
-      createdAt: today,
-      updatedAt: today
-    }]);
-    res.redirect('/admin/dashboard');
-  })
-
+    await Post.insertMany([
+      {
+        title: req.body.title,
+        body: req.body.body,
+        createdAt: today,
+        updatedAt: today,
+      },
+    ]);
+    res.redirect("/admin/dashboard");
+  });
 
 // Edit route
-router.route('/edit/:id')
-  .get(authenticateWebTokenMiddleware, async (req,res) => {
-    const data = await Post.findOne({_id:req.params.id});
+router
+  .route("/edit/:id")
+  .get(authenticateWebTokenMiddleware, async (req, res) => {
+    const data = await Post.findOne({ _id: req.params.id });
 
-    res.render('./admin/editPage.ejs', { 
+    res.render("./admin/editPage.ejs", {
       title: "edit",
       layout: "./admin/layouts/main-layout.ejs",
       postId: req.params.id,
-      data
+      data,
     });
   })
-  .put(authenticateWebTokenMiddleware, async (req,res) => {
-    try{ 
-      const {title, body} = req.body;
-      await Post.findOneAndUpdate({_id:req.params.id}, {title, body, updatedAt:new Date()});
-      res.redirect('/admin/dashboard');
-    } catch(err) {
+  .put(authenticateWebTokenMiddleware, async (req, res) => {
+    try {
+      const { title, body } = req.body;
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        { title, body, updatedAt: new Date() }
+      );
+      res.redirect("/admin/dashboard");
+    } catch (err) {
       console.log(err);
-      res.redirect('/admin/dashboard');
+      res.redirect("/admin/dashboard");
     }
-  })
-
+  });
 
 // view post
-router.route("/post/:id").get(authenticateWebTokenMiddleware ,async (req, res) => {
-  const id = req.params.id;
-  const data = await Post.findOne({ _id: id });
-  if (!data) {
-    res.redirect("/404");
-    return;
-  }
-  res.status(200).render("./post.ejs", { title: data.title, post: data, layout:"./admin/layouts/main-layout.ejs" });
-});
+router
+  .route("/post/:id")
+  .get(authenticateWebTokenMiddleware, async (req, res) => {
+    const id = req.params.id;
+    const data = await Post.findOne({ _id: id });
+    if (!data) {
+      res.redirect("/404");
+      return;
+    }
+    res.status(200).render("./post.ejs", {
+      title: data.title,
+      post: data,
+      layout: "./admin/layouts/main-layout.ejs",
+    });
+  });
 
 module.exports = router;
