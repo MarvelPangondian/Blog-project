@@ -10,6 +10,7 @@
   --dark-blue: #27374d;
   --dark-blue-hover: #1a2433;
   --danger-color: #ef5a6f;
+  --info-color: #1767d6;
   --background-color-primary: #526d82;
   --border-radius: 10px;
   --font-family-primary: "Poppins", sans-serif;
@@ -223,8 +224,26 @@ header {
 .article-list li:last-child {
   margin-bottom: 2.5em;
 }
+
 .article-list a {
   color: var(--font-color-primary);
+}
+
+.article-list__admin {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+
+.article-list__admin .btn-secondary {
+  padding: 0.7em 0.9em;
+}
+
+@media only screen and (min-width: 780px) {
+  .article-list__admin {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .article-list__date {
@@ -232,9 +251,26 @@ header {
   opacity: 0.6;
 }
 
+.article-list__buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+.article-list__buttons button {
+  transition: background-color 0.3s;
+}
+.article-list__buttons .delete-button:hover {
+  background-color: var(--danger-color);
+}
+
+.article-list__buttons .edit-button:hover {
+  background-color: var(--info-color);
+}
+
 .pagination {
   color: var(--font-color-primary);
 }
+
 .pagination:hover {
   text-decoration: underline;
 }

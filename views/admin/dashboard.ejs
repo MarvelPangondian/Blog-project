@@ -3,13 +3,22 @@
   <h2 class="articles__header">Posts</h2>
   <ul class="article-list">
     <% data.forEach(element => {  %>
-      <li>
-        <a href= <%= `post/${element._id}` %>>
+      <li class="article-list__admin">
+
+        <a href= <%= `/post/${element._id}` %>>
           <p class="article-list__title"><%= element.title %> </p>
-          <div class="article-list__buttons">
-            Hello
-          </div>
         </a>
+
+        <div class="article-list__buttons">
+          <form method="POST" action="/admin/dashboard?_method=PUT">
+            <input type="hidden" value="<%= element._id%>" name="postId" />
+            <button type="submit" class="btn-secondary edit-button">Edit</button>
+          </form>
+          <form method="POST" action="/admin/dashboard?_method=DELETE">
+            <input type="hidden" value="<%= element._id%>" name="postId" />
+            <button type="submit" class="btn-secondary delete-button">Delete</button>
+          </form>
+        </div>
       </li>
     <% }) %>  
   </ul>

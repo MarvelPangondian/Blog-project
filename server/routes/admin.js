@@ -5,6 +5,7 @@ const User = require("../models/userModel");
 const Post = require("../models/postModel.js");
 const jwt = require("jsonwebtoken");
 
+
 // Router initialization
 const router = express.Router();
 
