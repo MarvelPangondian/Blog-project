@@ -38,6 +38,9 @@ router.route("/").get((req, res) => {
 router
   .route("/login")
   .get((req, res) => {
+    // GET /admin/login
+
+    // Check if jwt exists and valid, if so then redirect to dashboard
     let authenticated;
     const message = req.flash("msg");
 
@@ -52,6 +55,8 @@ router
       authenticated = false;
     }
 
+
+    // render login page if token is invalid
     if (!authenticated) {
       res.render("./admin/login.ejs", {
         title: "login",
@@ -60,27 +65,42 @@ router
       });
       return;
     }
+
+    // redirect to dashboard if token is valid
     res.redirect("/admin/dashboard");
   })
+
   .post(async (req, res) => {
+    // POST admin/login
+    // validate username and password
+
     try {
-      const username = await User.findOne({ username: req.body.username });
+      const username = await User.findOne({ username: req.body.username }); // finding suitable username
+
       if (
         username &&
         (await bcrypt.compare(req.body.password, username.password))
       ) {
+
+        // sign token
         const token = jwt.sign(
           { usernameId: username._id },
           process.env.SECRET_KEY,
-          { expiresIn: 60 }
+          { expiresIn: 60*5 } // 5 minutes
         );
 
+        // store token in cookies
         res.cookie("jyuKairosGrace", token, { httpOnly: true });
+
+        // redirect to dashboard
         res.redirect("/admin/dashboard");
         return;
       }
+
+      // flash invalid credentials
       req.flash("msg", "Invalid Credentials");
       res.redirect("/admin/login");
+
     } catch (err) {
       console.log(err);
 
@@ -93,6 +113,8 @@ router
 router
   .route("/dashboard")
   .get(authenticateWebTokenMiddleware, async (req, res) => {
+
+    // Paging process 
     const currentPage = parseInt(req.query.page) || 1;
     let nextPage;
     const eachPageCount = 6;

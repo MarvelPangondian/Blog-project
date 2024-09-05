@@ -18,10 +18,10 @@
     <div class="all-pagination all-pagination-right">
   <% } else { %>
     <div class="all-pagination">
-    <a href=<%= `admin/dashboard?page=${nextPage}`%> class="pagination pagination-older">&lt; View older posts</a>
+    <a href=<%= `/admin/dashboard?page=${nextPage}`%> class="pagination pagination-older">&lt; View older posts</a>
   <% } %>
       <% if (currentPage !== 1) { %>
-        <a href= <%= `admin/dashboard?page=${currentPage - 1}` %> class="pagination pagination-newer"> View newer posts &gt;</a>
+        <a href= <%= `/admin/dashboard?page=${currentPage - 1}` %> class="pagination pagination-newer"> View newer posts &gt;</a>
       <% } %>
   </div>
 </article>
