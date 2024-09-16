@@ -4,7 +4,7 @@
 * [Table of Contents](#table-of-contents)
 * [Preview](#preview)
 * [Description](#description)
-* [Run program](#how-to-run)
+* [Run program](#run-program)
 * [Access Admin Page](#access-admin-page)
 * [Tech Stack](#tech-stack)
 * [Author](#author)
@@ -61,7 +61,7 @@ A simple blog built using HTML, CSS, JavaScript, and Express. This blog utilizes
     npm run create-user <username> <password>
     ```
 
-4. AAfter creating your user account, navigate to the admin page. If you're running the program locally, you can access the login page at [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
+4. After creating your user account, navigate to the admin page. If you're running the program locally, you can access the login page at [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
 
 
 5. After logging in, the user can create, edit, and delete posts.
