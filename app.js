@@ -27,6 +27,7 @@ app.locals.isCurrentRoute = isCurrentRoute;
 
 // View engine setup
 app.use(expressLayouts);
+app.set('views', './views');
 app.set("view engine", "ejs");
 app.set("layout", "./layouts/main-layout");
 
