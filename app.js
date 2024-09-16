@@ -9,6 +9,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const isCurrentRoute = require('./public/scripts/util')
+const path = require('path');
 
 // App initialization
 const app = express();
@@ -20,14 +21,15 @@ require("./server/config/db.js"); // Connect to the database
 const PORT = process.env.PORT || 3000;
 
 // Middleware for parsing static files, form data, and JSON
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.locals.isCurrentRoute = isCurrentRoute;
 
 // View engine setup
 app.use(expressLayouts);
-app.set('views', './views');
+app.set("views", path.join(  __dirname + "/views" ));
+
 app.set("view engine", "ejs");
 app.set("layout", "./layouts/main-layout");
 
