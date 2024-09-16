@@ -15,7 +15,7 @@ process.on("SIGINT", () => {
   process.exit(0);
 });
 
-process.on("SIGTERM", () => {
+process.on("SIGTERM", () => { 
   mongoose.connection.close();
   console.log("Received SIGTERM. Exiting...");
   process.exit(0);

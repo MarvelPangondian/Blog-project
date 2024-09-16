@@ -17,7 +17,7 @@ const app = express();
 require("./server/config/db.js"); // Connect to the database
 
 // Set port
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware for parsing static files, form data, and JSON
 app.use(express.static("public"));
